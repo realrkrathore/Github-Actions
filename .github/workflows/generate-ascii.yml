@@ -1,0 +1,33 @@
+name : Generate ASCII Artwork
+
+on: [push]
+
+jobs:
+    ascii_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout Repo
+          uses: actions/checkout@v4
+
+# Before Using Any library We need to install it         
+
+        - name: install cowsay Program
+          run: |
+            sudo apt-get install -y cowsay
+
+# Running Third Party Library -> Generating ASCII Artwork and saving it to a file output.txt
+
+        - name: Generate ASCII Artwork
+          run: cowsay -f output "Hello, World from Github Actions!" >> output.txt
+
+
+        # Testing Whether file Exists or not
+        - name: Test file Exists
+          run: grep -i output 'output.txt' 
+        #   Read File
+        - name: Read File
+          run: cat output.txt
+
+        # List Files
+        - name: List Repo Files
+          run: ls -ltra
