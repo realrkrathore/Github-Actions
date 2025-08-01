@@ -1,33 +1,39 @@
-name : Generate ASCII Artwork
+name: Generate ASCII Artwork
 
 on: [push]
 
 jobs:
-    ascii_job:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout Repo
-          uses: actions/checkout@v4
+  ascii_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
 
-# Before Using Any library We need to install it         
+      # Before Using Any library We need to install it
 
-        - name: install cowsay Program
-          run: |
-            sudo apt-get install -y cowsay
+      - name: install cowsay Program
+        run: |
+          sudo apt-get install -y cowsay
 
-# Running Third Party Library -> Generating ASCII Artwork and saving it to a file output.txt
+      # Running Third Party Library -> Generating ASCII Artwork and saving it to a file output.txt
 
-        - name: Generate ASCII Artwork
-          run: cowsay -f dragon "Hello, World from Github Actions!" >> dragon.txt
+      - name: Generate ASCII Artwork
+        run: cowsay -f dragon "Hello, World from Github Actions!" >> dragon.txt
 
+      # Testing Whether file Exists or not
+      - name: Test file Exists
+        run: |
+          if [ -f dragon.txt ]; then
+            echo "File dragon.txt exists"
+            ls -la dragon.txt
+          else
+            echo "File dragon.txt does not exist"
+            exit 1
+          fi
+      #   Read File
+      - name: Read File
+        run: cat dragon.txt
 
-        # Testing Whether file Exists or not
-        - name: Test file Exists
-          run: grep -i dragon 'dragon.txt' 
-        #   Read File
-        - name: Read File
-          run: cat dragon.txt
-
-        # List Files
-        - name: List Repo Files
-          run: ls -ltra
+      # List Files
+      - name: List Repo Files
+        run: ls -ltra
