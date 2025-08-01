@@ -16,3 +16,19 @@ jobs:
         run: |
           chmod +x ./run-script.sh 
           ./run-script.sh
+
+#Multiple Jobs Example
+
+  ascii_job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: List Repo Files
+        run: ls -ltra
+
+      - name: Run Shell Script
+        run: |
+          chmod +x ./run-script.sh 
+          ./run-script.sh
