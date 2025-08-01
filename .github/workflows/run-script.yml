@@ -1,6 +1,10 @@
 name: Run Shell Script
 
-on: [push]
+on: 
+    #[push]
+    # Lets Schedule the Workflow to run every minute
+    schedule:
+      - cron: "*/1 * * * *"
 
 jobs:
   ascii_job1:
