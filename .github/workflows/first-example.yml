@@ -9,11 +9,22 @@ jobs:
         - name: Checkout Code
           uses: actions/checkout@v4
 
+# Running multiple steps in a job        
+
         - name: Welcome Message
-          run: echo "Hello, World from Github Actions!"
+          run: |
+            echo "Hello, World from Github Actions!"
+            ls -ltra
+            cat README.md
 
-        - name: list files
-          run: ls
+# Running Third Party Library
 
-        - name: Read Files
-          run: cat README.md
+        - name: Generate ASCII Artwork
+          run: cowsay -f dragon "Hello, World from Github Actions!" >> output.txt
+
+
+        # - name: list files
+        #   run: ls
+
+        # - name: Read Files
+        #   run: cat README.md
