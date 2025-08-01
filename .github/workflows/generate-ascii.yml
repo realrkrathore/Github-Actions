@@ -18,15 +18,15 @@ jobs:
 # Running Third Party Library -> Generating ASCII Artwork and saving it to a file output.txt
 
         - name: Generate ASCII Artwork
-          run: cowsay -f output "Hello, World from Github Actions!" >> output.txt
+          run: cowsay -f dragon "Hello, World from Github Actions!" >> dragon.txt
 
 
         # Testing Whether file Exists or not
         - name: Test file Exists
-          run: grep -i output 'output.txt' 
+          run: grep -i dragon 'dragon.txt' 
         #   Read File
         - name: Read File
-          run: cat output.txt
+          run: cat dragon.txt
 
         # List Files
         - name: List Repo Files
